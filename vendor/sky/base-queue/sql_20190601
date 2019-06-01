@@ -1,0 +1,45 @@
+drop table if exists `test`.`queue`;
+create table if not exists `test`.`queue` (
+    `id` int(10) unsigned auto_increment comment '主键ID',
+    `class_name` varchar(32) not null default '' comment '消息类名称',
+    `name` varchar(64) not null default '' comment '队列名称',
+    `business` varchar(32) not null default '' comment '业务名称',
+    `description` varchar(64) not null default '' comment '消息描述',
+    `last_status` tinyint(3) not null default '0' comment '队列最近一次执行状态 0.待处理 1.处理中 2.成功 3.失败',
+    `created_at` timestamp not null default current_timestamp comment '创建时间',
+    `updated_at` timestamp not null default current_timestamp on update current_timestamp comment '更新时间',
+    `deleted_at` timestamp null default null comment '删除时间',
+    primary key (`id`)
+)engine=innodb default charset utf8mb4 collate utf8mb4_general_ci comment '队列表';
+
+
+drop table if exists `test`.`queue_log`;
+create table if not exists `test`.`queue_log` (
+    `id` int(10) unsigned auto_increment comment '主键ID',
+    `queue_id` int(10) not null default '0' comment '队列ID，queue表主键ID',
+    `queue_uuid` varchar(32) not null default '' comment '队列生成时的唯一标识ID',
+    `execution_time` int(10) not null default '0' comment '执行耗时（单位：毫秒）',
+    `status` tinyint(3) not null default '0' comment '队列执行状态 0.待处理 1.处理中 2.成功 3.失败',
+    `err` text default null comment '错误信息',
+    `payload` text default null comment '载荷',
+    `created_at` timestamp not null default current_timestamp comment '创建时间',
+    `updated_at` timestamp not null default current_timestamp on update current_timestamp comment '更新时间',
+    `deleted_at` timestamp null default null comment '删除时间',
+    primary key (`id`),
+    unique `idx_queue_uuid`(`queue_uuid`),
+    key `idx_queue_id`(`queue_id`)
+)engine=innodb default charset utf8mb4 collate utf8mb4_general_ci comment '队列执行日志表';
+
+
+drop table if exists `test`.`queue_status_change_log`;
+create table if not exists `test`.`queue_status_change_log` (
+    `id` int(10) unsigned auto_increment comment '主键ID',
+    `queue_id` int(10) not null default '0' comment '队列ID，queue表主键ID',
+    `from_status` tinyint(3) not null default '0' comment 'from队列执行状态 0.待处理 1.处理中 2.成功 3.失败',
+    `to_status` tinyint(3) not null default '0' comment 'to队列执行状态 0.待处理 1.处理中 2.成功 3.失败',
+    `created_at` timestamp not null default current_timestamp comment '创建时间',
+    `updated_at` timestamp not null default current_timestamp on update current_timestamp comment '更新时间',
+    `deleted_at` timestamp null default null comment '删除时间',
+    primary key (`id`),
+    key `idx_queue_id`(`queue_id`)
+)engine=innodb default charset utf8mb4 collate utf8mb4_general_ci comment '队列执行状态变更历史表';

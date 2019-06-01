@@ -130,6 +130,13 @@ return [
             'password' => env('REDIS_PASSWORD', null),
         ],
 
+        'queue' => [
+            'host'     => env('QUEUE_REDIS_HOST', '127.0.0.1'),
+            'port'     => env('QUEUE_REDIS_PORT', 6379),
+            'database' => env('QUEUE_REDIS_DATABASE', 2),
+            'password' => env('QUEUE_REDIS_PASSWORD', null),
+        ],
+
     ],
 
 ];

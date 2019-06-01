@@ -1,0 +1,22 @@
+{
+    "name": "sky/base-queue",
+    "description": "queue",
+    "type": "library",
+    "authors": [
+        {
+            "name": "sky",
+            "email": "972653707@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sky\\BaseQueue\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.1.14"
+    }
+}

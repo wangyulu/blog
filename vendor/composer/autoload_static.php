@@ -13,6 +13,7 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'bee9632da3ca00a99623b9c35d0c4f8b' => __DIR__ . '/..' . '/laravel/lumen-framework/src/helpers.php',
+        '8752a13158d8a7b445c6eaddb4d753bf' => __DIR__ . '/..' . '/sky/base-queue/src/Support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -37,6 +38,7 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
+            'Sky\\BaseQueue\\' => 14,
         ),
         'P' => 
         array (
@@ -157,6 +159,10 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Sky\\BaseQueue\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sky/base-queue/src',
         ),
         'Psr\\SimpleCache\\' => 
         array (
@@ -2625,6 +2631,35 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Sky\\BaseQueue\\Bll\\BaseBll' => __DIR__ . '/..' . '/sky/base-queue/src/Bll/BaseBll.php',
+        'Sky\\BaseQueue\\Bll\\QueueBll' => __DIR__ . '/..' . '/sky/base-queue/src/Bll/QueueBll.php',
+        'Sky\\BaseQueue\\Events\\BaseEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/BaseEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueCreateEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueCreateEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueEndEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueEndEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueExcepEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueExcepEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueFailEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueFailEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueLoopEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueLoopEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueStartEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueStartEvent.php',
+        'Sky\\BaseQueue\\Events\\QueueStopEvent' => __DIR__ . '/..' . '/sky/base-queue/src/Events/QueueStopEvent.php',
+        'Sky\\BaseQueue\\Http\\Controllers\\V1_0\\BaseController' => __DIR__ . '/..' . '/sky/base-queue/src/Http/Controllers/V1_0/BaseController.php',
+        'Sky\\BaseQueue\\Http\\Controllers\\V1_0\\QueueController' => __DIR__ . '/..' . '/sky/base-queue/src/Http/Controllers/V1_0/QueueController.php',
+        'Sky\\BaseQueue\\Http\\Controllers\\V1_0\\Test\\QueueController' => __DIR__ . '/..' . '/sky/base-queue/src/Http/Controllers/V1_0/Test/QueueController.php',
+        'Sky\\BaseQueue\\Jobs\\TestSendSms' => __DIR__ . '/..' . '/sky/base-queue/src/Jobs/TestSendSms.php',
+        'Sky\\BaseQueue\\Librarys\\AdapterDispatcher' => __DIR__ . '/..' . '/sky/base-queue/src/Librarys/AdapterDispatcher.php',
+        'Sky\\BaseQueue\\Librarys\\EventMap' => __DIR__ . '/..' . '/sky/base-queue/src/Librarys/EventMap.php',
+        'Sky\\BaseQueue\\Listeners\\BaseListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/BaseListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueCreateListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueCreateListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueEndListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueEndListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueExcepListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueExcepListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueFailListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueFailListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueLoopListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueLoopListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueStartListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueStartListener.php',
+        'Sky\\BaseQueue\\Listeners\\QueueStopListener' => __DIR__ . '/..' . '/sky/base-queue/src/Listeners/QueueStopListener.php',
+        'Sky\\BaseQueue\\Models\\QueueLogModel' => __DIR__ . '/..' . '/sky/base-queue/src/Models/QueueLogModel.php',
+        'Sky\\BaseQueue\\Models\\QueueModel' => __DIR__ . '/..' . '/sky/base-queue/src/Models/QueueModel.php',
+        'Sky\\BaseQueue\\Models\\QueueStatusChangeLogModel' => __DIR__ . '/..' . '/sky/base-queue/src/Models/QueueStatusChangeLogModel.php',
+        'Sky\\BaseQueue\\Observer\\QueueObserver' => __DIR__ . '/..' . '/sky/base-queue/src/Observers/QueueObserver.php',
+        'Sky\\BaseQueue\\Providers\\AdapterBusServiceProvider' => __DIR__ . '/..' . '/sky/base-queue/src/Providers/AdapterBusServiceProvider.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',

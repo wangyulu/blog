@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56bd4aba8b511c30e5697132797fe3ab",
+    "content-hash": "ce05146cb35e2a8d929dc9c475801eca",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1735,6 +1735,45 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
+            "name": "sky/base-queue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wangyulu/base-queue.git",
+                "reference": "fd6823ce8410c94f9acdf29b01904101b53acf17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/fd6823ce8410c94f9acdf29b01904101b53acf17",
+                "reference": "fd6823ce8410c94f9acdf29b01904101b53acf17",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.14"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sky\\BaseQueue\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "sky",
+                    "email": "972653707@qq.com"
+                }
+            ],
+            "description": "queue",
+            "support": {
+                "source": "https://github.com/wangyulu/base-queue/tree/master",
+                "issues": "https://github.com/wangyulu/base-queue/issues"
+            },
+            "time": "2019-06-01T07:18:34+00:00"
         },
         {
             "name": "symfony/console",
@@ -4062,7 +4101,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "sky/base-queue": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
