@@ -21,6 +21,7 @@ class QueueLogModel extends Model
         'queue_uuid',
         'execution_time',
         'status',
-        'err'
+        'err',
+        'payload',
     ];
 }
