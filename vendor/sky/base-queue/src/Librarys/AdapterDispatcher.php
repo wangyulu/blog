@@ -16,6 +16,8 @@ class AdapterDispatcher extends Dispatcher
 {
     public function dispatch($command)
     {
+        $command->tries ?? $command->tries = 1;
+
         event(new QueueCreateEvent($command));
         return parent::dispatch($command);
     }

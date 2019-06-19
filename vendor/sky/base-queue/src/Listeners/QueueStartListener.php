@@ -19,7 +19,7 @@ class QueueStartListener extends BaseListener
     {
         $queue = $this->getQueueByClassName($event->getClassName());
         if (!$queue) {
-            Log::error('消息未找到', [$event->getClassName()]);
+            Log::error('base-queue', [$event->getClassName() . ' not fund']);
             return;
         }
 

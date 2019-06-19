@@ -8,6 +8,7 @@
 
 namespace Sky\BaseQueue\Listeners;
 
+use Log;
 use Sky\BaseQueue\Models\QueueModel;
 use Sky\BaseQueue\Models\QueueLogModel;
 use Sky\BaseQueue\Events\QueueFailEvent;
@@ -18,7 +19,7 @@ class QueueFailListener extends BaseListener
     {
         $queue = $this->getQueueByClassName($event->getClassName());
         if (!$queue) {
-            Log::error('消息未找到', [$event->getClassName()]);
+            Log::error('base-queue', [$event->getClassName() . ' not fund']);
             return;
         }
 
@@ -29,6 +30,7 @@ class QueueFailListener extends BaseListener
             'queue_uuid'     => $event->getQueueUuid(),
             'status'         => QueueModel::STATUS_FAIL,
             'err'            => $event->excep,
+            'payload'        => $event->payload,
             'execution_time' => getExecTime()
         ];
 

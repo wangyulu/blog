@@ -16,11 +16,14 @@ class BaseEvent
 
     public $excep;
 
+    public $payload;
+
     public function __construct($event)
     {
         if (property_exists($event, 'job')) {
-            $this->job  = $event->job;
-            $this->body = json_decode($event->job->getRawBody(), true);
+            $this->job     = $event->job;
+            $this->body    = json_decode($event->job->getRawBody(), true);
+            $this->payload = $event->job->getRawBody();
         }
 
         if (property_exists($event, 'exception')) {
