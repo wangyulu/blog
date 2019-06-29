@@ -15,6 +15,6 @@ class QueueStopListener extends BaseListener
 {
     public function handle(QueueStopEvent $event)
     {
-        Log::info(__CLASS__, [get_class($event)]);
+        Log::info('【base_queue_stop】', [get_class($event)]);
     }
 }

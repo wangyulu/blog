@@ -17,25 +17,28 @@ class QueueStartListener extends BaseListener
 {
     public function handle(QueueStartEvent $event)
     {
-        $queue = $this->getQueueByClassName($event->getClassName());
-        if (!$queue) {
-            Log::error('base-queue', [$event->getClassName() . ' not fund']);
-            return;
+        try {
+            $queue = $this->getQueueByClassName($event->getClassName());
+            if (!$queue) {
+                Log::error('【base_queue_start_error】', [$event->getClassName() . ' not fund']);
+                return;
+            }
+
+            $logQuery = QueueLogModel::query();
+            $data     = [
+                'queue_id'   => $queue->id,
+                'queue_uuid' => $event->getQueueUuid(),
+                'status'     => QueueModel::STATUS_RUN,
+            ];
+
+            $logQuery->updateOrCreate(array_except($data, 'status'), $data);
+
+            setQueueStartTime();
+
+            Log::info('【base_queue_start】', [get_class($event), $event->job]);
+
+        } catch (\Exception $e) {
+            Log::error('【base_queue_start_error】', [$e->getMessage()]);
         }
-
-        $this->setQueueStatusToRun($queue);
-
-        $logQuery = QueueLogModel::query();
-        $data     = [
-            'queue_id'   => $queue->id,
-            'queue_uuid' => $event->getQueueUuid(),
-            'status'     => QueueModel::STATUS_RUN,
-        ];
-
-        $logQuery->updateOrCreate(array_except($data, 'status'), $data);
-
-        setQueueStartTime();
-
-        Log::info('【start】', [get_class($event), $event->job]);
     }
 }

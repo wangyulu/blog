@@ -18,8 +18,8 @@ class BaseController extends Controller
         return $request->get('page', 1);
     }
 
-    public function getPageSize(Request $request)
+    public function getPageSize(Request $request, $default = 20)
     {
-        return $request->get('pageSize', 20);
+        return $request->get('pageSize', $default);
     }
 }

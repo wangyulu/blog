@@ -16,18 +16,27 @@ class QueueCreateListener extends BaseListener
 {
     public function handle(QueueCreateEvent $event)
     {
-        $className = get_class($event->job);
-        Log::info('【create job】', [get_class($event->job)]);
+        try {
+            $className = get_class($event->job);
 
-        $query = QueueModel::query();
+            $query = QueueModel::query();
 
-        $data = [
-            'class_name'  => $className,
-            'name'        => $event->job->queue,
-            'business'    => config('que.business_code'),
-            'description' => $this->displayName($event)
-        ];
+            $data = [
+                'class_name'  => $className,
+                'name'        => $event->job->queue,
+                'bid'         => config('que.business_id'),
+                'env'         => config('que.environment'),
+                'description' => $this->displayName($event)
+            ];
 
-        $query->updateOrCreate(array_only($data, 'class_name'), $data);
+            $model = $query->firstOrCreate(array_except($data, ['description', 'name']), $data);
+
+            $this->insertStatusChangeToWait($model);
+
+            Log::info('【base_queue_create_job】', [get_class($event->job)]);
+
+        } catch (\Exception $e) {
+            Log::error('【base_queue_create_job_error】', [$e->getMessage()]);
+        }
     }
 }

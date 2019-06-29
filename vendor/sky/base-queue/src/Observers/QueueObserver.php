@@ -9,25 +9,26 @@
 namespace Sky\BaseQueue\Observer;
 
 use Sky\BaseQueue\Models\QueueModel;
+use Sky\BaseQueue\Models\QueueLogModel;
 use Sky\BaseQueue\Models\QueueStatusChangeLogModel;
 
 class QueueObserver
 {
-    public function created(QueueModel $queue)
+    public function created(QueueLogModel $queue)
     {
         $status              = new QueueStatusChangeLogModel();
-        $status->queue_id    = $queue->getAttributeValue('id');
+        $status->queue_id    = $queue->queue_id;
         $status->from_status = QueueModel::STATUS_WAIT;
-        $status->to_status   = QueueModel::STATUS_WAIT;
+        $status->to_status   = QueueModel::STATUS_RUN;
         $status->save();
     }
 
-    public function updated(QueueModel $queue)
+    public function updated(QueueLogModel $queue)
     {
         $status              = new QueueStatusChangeLogModel();
-        $status->queue_id    = $queue->getAttributeValue('id');
-        $status->from_status = $queue->getOriginal('last_status');
-        $status->to_status   = $queue->getAttributeValue('last_status');
+        $status->queue_id    = $queue->getAttributeValue('queue_id');
+        $status->from_status = $queue->getOriginal('status');
+        $status->to_status   = $queue->getAttributeValue('status');
         $status->save();
     }
 }

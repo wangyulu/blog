@@ -9,11 +9,11 @@
 namespace Sky\BaseQueue\Providers;
 
 use Log;
-use Sky\BaseQueue\Models\QueueModel;
 use Sky\BaseQueue\Librarys\EventMap;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Bus\BusServiceProvider;
 use Sky\BaseQueue\Events\QueueEndEvent;
+use Sky\BaseQueue\Models\QueueLogModel;
 use Sky\BaseQueue\Events\QueueFailEvent;
 use Sky\BaseQueue\Events\QueueStopEvent;
 use Sky\BaseQueue\Events\QueueLoopEvent;
@@ -157,6 +157,6 @@ class AdapterBusServiceProvider extends BusServiceProvider
 
     protected function registerObserver()
     {
-        QueueModel::observe(QueueObserver::class);
+        QueueLogModel::observe(QueueObserver::class);
     }
 }

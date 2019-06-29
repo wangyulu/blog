@@ -19,9 +19,9 @@ class QueueModel extends Model
     protected $fillable = [
         'class_name',
         'name',
-        'business',
         'description',
-        'last_status',
+        'env',
+        'bid',
     ];
 
     // 执行状态 0.待处理 1.处理中 2.成功 3.失败 4.异常
@@ -46,5 +46,11 @@ class QueueModel extends Model
             self::STATUS_FAIL  => self::STATUS_FAIL_CODE,
             self::STATUS_EXCEP => self::STATUS_EXCEP_CODE,
         ];
+    }
+
+    public function statusChangeLog()
+    {
+        return $this->hasOne(QueueStatusChangeLogModel::class, 'queue_id')
+            ->orderBy('id', 'desc');
     }
 }

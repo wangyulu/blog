@@ -31,10 +31,18 @@ composer -vv require sky/base-queue:dev-master
 1.1 队列配置
 
 ```
+# 指定队列所使用的Redis实体
 QUEUE_REDIS_CONNECTION=queue
 
 # 忽略队列失败时默认的处理逻辑
 QUEUE_FAILED_TABLE=null
+
+# 业务Code
+# 1.a_api 2.b_api
+QUEUE_BUSINESS_ID=1
+
+# 环境 1.生产 2.灰度 3.测试 4.开发
+QUEUE_ENVIRONMENT=1
 ```
 
 1.2 COMMON_DB数据库配置

@@ -1742,12 +1742,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wangyulu/base-queue.git",
-                "reference": "8996c643b1faaba2ba4ae799f0fd51f11ddac9bf"
+                "reference": "6db2426e177430139ee3e894998814698227fcad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/8996c643b1faaba2ba4ae799f0fd51f11ddac9bf",
-                "reference": "8996c643b1faaba2ba4ae799f0fd51f11ddac9bf",
+                "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/6db2426e177430139ee3e894998814698227fcad",
+                "reference": "6db2426e177430139ee3e894998814698227fcad",
                 "shasum": ""
             },
             "require": {
@@ -1773,7 +1773,7 @@
                 "source": "https://github.com/wangyulu/base-queue/tree/master",
                 "issues": "https://github.com/wangyulu/base-queue/issues"
             },
-            "time": "2019-06-19T03:54:25+00:00"
+            "time": "2019-06-29T09:55:53+00:00"
         },
         {
             "name": "symfony/console",
