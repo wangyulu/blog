@@ -31,9 +31,9 @@ class QueueCreateListener extends BaseListener
 
             $model = $query->firstOrCreate(array_except($data, ['description', 'name']), $data);
 
-            $this->insertStatusChangeToWait($model);
+            $this->insertQueueLogToWait($model, $event->getQueueUuid());
 
-            Log::info('【base_queue_create_job】', [get_class($event->job)]);
+            Log::info('【base_queue_create_job】', [$className, config('que.business_id'), config('que.environment')]);
 
         } catch (\Exception $e) {
             Log::error('【base_queue_create_job_error】', [$e->getMessage()]);

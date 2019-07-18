@@ -10,7 +10,6 @@ namespace Sky\BaseQueue\Listeners;
 
 use Log;
 use Sky\BaseQueue\Models\QueueModel;
-use Sky\BaseQueue\Models\QueueLogModel;
 use Sky\BaseQueue\Events\QueueStartEvent;
 
 class QueueStartListener extends BaseListener
@@ -24,18 +23,17 @@ class QueueStartListener extends BaseListener
                 return;
             }
 
-            $logQuery = QueueLogModel::query();
-            $data     = [
-                'queue_id'   => $queue->id,
-                'queue_uuid' => $event->getQueueUuid(),
-                'status'     => QueueModel::STATUS_RUN,
-            ];
+            if (!$logQuery = $this->hasQueueLog($event, $queue)) {
+                Log::error('【base_queue_start_error】', [$queue->id, $event->getQueueUuid(), ' queue_log not fund']);
+                return;
+            }
 
-            $logQuery->updateOrCreate(array_except($data, 'status'), $data);
+            $logQuery->status = QueueModel::STATUS_RUN;
+            $logQuery->save();
 
             setQueueStartTime();
 
-            Log::info('【base_queue_start】', [get_class($event), $event->job]);
+            Log::info('【base_queue_start】', [$event->getClassName(), config('que.business_id'), config('que.environment')]);
 
         } catch (\Exception $e) {
             Log::error('【base_queue_start_error】', [$e->getMessage()]);

@@ -18,7 +18,10 @@ class AdapterDispatcher extends Dispatcher
     {
         $command->tries ?? $command->tries = 1;
 
-        event(new QueueCreateEvent($command));
-        return parent::dispatch($command);
+        $queueUuid = parent::dispatch($command);
+
+        event(new QueueCreateEvent($command, $queueUuid));
+
+        return $queueUuid;
     }
 }

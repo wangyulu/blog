@@ -10,7 +10,6 @@ namespace Sky\BaseQueue\Listeners;
 
 use Log;
 use Sky\BaseQueue\Models\QueueModel;
-use Sky\BaseQueue\Models\QueueLogModel;
 use Sky\BaseQueue\Events\QueueExcepEvent;
 
 class QueueExcepListener extends BaseListener
@@ -24,19 +23,18 @@ class QueueExcepListener extends BaseListener
                 return;
             }
 
-            $logQuery = QueueLogModel::query();
-            $data     = [
-                'queue_id'       => $queue->id,
-                'queue_uuid'     => $event->getQueueUuid(),
-                'status'         => QueueModel::STATUS_EXCEP,
-                'err'            => $event->excep,
-                'payload'        => $event->payload,
-                'execution_time' => getExecTime()
-            ];
+            if (!$logQuery = $this->hasQueueLog($event, $queue)) {
+                Log::error('【base_queue_start_error】', [$queue->id, $event->getQueueUuid(), ' queue_log not fund']);
+                return;
+            }
 
-            $logQuery->updateOrCreate(array_only($data, ['queue_uuid', 'queue_id']), $data);
+            $logQuery->status         = QueueModel::STATUS_EXCEP;
+            $logQuery->err            = $event->excep;
+            $logQuery->payload        = $event->payload;
+            $logQuery->execution_time = getExecTime();
+            $logQuery->save();
 
-            Log::info('【base_queue_exep】', [get_class($event)]);
+            Log::info('【base_queue_exep】', [$event->getClassName(), config('que.business_id'), config('que.environment')]);
 
         } catch (\Exception $e) {
             Log::error('【base_queue_exep_error】', [$e->getMessage()]);

@@ -48,9 +48,9 @@ class QueueModel extends Model
         ];
     }
 
-    public function statusChangeLog()
+    public function log()
     {
-        return $this->hasOne(QueueStatusChangeLogModel::class, 'queue_id')
+        return $this->hasOne(QueueLogModel::class, 'queue_id')
             ->orderBy('id', 'desc');
     }
 }

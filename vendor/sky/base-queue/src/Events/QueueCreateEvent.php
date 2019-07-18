@@ -12,8 +12,9 @@ use App\Jobs\Job;
 
 class QueueCreateEvent extends BaseEvent
 {
-    public function __construct(Job $job)
+    public function __construct(Job $job, $queueUuid)
     {
-        $this->job = $job;
+        $this->job       = $job;
+        $this->queueUuid = $queueUuid;
     }
 }

@@ -8,8 +8,9 @@
 
 namespace Sky\BaseQueue\Listeners;
 
+use Sky\BaseQueue\Events\BaseEvent;
 use Sky\BaseQueue\Models\QueueModel;
-use Sky\BaseQueue\Models\QueueStatusChangeLogModel;
+use Sky\BaseQueue\Models\QueueLogModel;
 
 class BaseListener
 {
@@ -36,12 +37,20 @@ class BaseListener
         return $queue;
     }
 
-    public function insertStatusChangeToWait(QueueModel $queue)
+    public function insertQueueLogToWait(QueueModel $queue, $queueUuid = '')
     {
-        $status              = new QueueStatusChangeLogModel();
-        $status->queue_id    = $queue->id;
-        $status->from_status = QueueModel::STATUS_WAIT;
-        $status->to_status   = QueueModel::STATUS_WAIT;
-        $status->save();
+        $log             = new QueueLogModel();
+        $log->queue_id   = $queue->id;
+        $log->queue_uuid = $queueUuid;
+        $log->status     = QueueModel::STATUS_WAIT;
+        $log->save();
+    }
+
+    public function hasQueueLog(BaseEvent $event, QueueModel $queue)
+    {
+        return QueueLogModel::query()
+            ->where('queue_id', $queue->id)
+            ->where('queue_uuid', $event->getQueueUuid())
+            ->first();
     }
 }

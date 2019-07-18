@@ -30,7 +30,7 @@ class QueueBll extends BaseBll
         }
 
         foreach ($res as $item) {
-            $item->statusChangeLog->toArray();
+            $item->log->toArray();
         }
 
         return $res->toArray();
@@ -69,11 +69,11 @@ class QueueBll extends BaseBll
         }
 
         foreach ($res as $item) {
-            if ($item->statusChangeLog->to_status == QueueModel::STATUS_WAIT) {
+            if ($item->log->status == QueueModel::STATUS_WAIT) {
                 $waitCount++;
             }
 
-            if ($item->statusChangeLog->to_status == QueueModel::STATUS_RUN) {
+            if ($item->log->status == QueueModel::STATUS_RUN) {
                 $runCount++;
             }
         }

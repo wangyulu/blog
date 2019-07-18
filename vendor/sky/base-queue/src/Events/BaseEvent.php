@@ -18,6 +18,8 @@ class BaseEvent
 
     public $payload;
 
+    public $queueUuid;
+
     public function __construct($event)
     {
         if (property_exists($event, 'job')) {
@@ -38,6 +40,6 @@ class BaseEvent
 
     public function getQueueUuid()
     {
-        return array_get($this->body, 'id', '');
+        return $this->queueUuid ?: array_get($this->body, 'id', '');
     }
 }

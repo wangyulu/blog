@@ -19,14 +19,14 @@ class QueueObserver
         $status              = new QueueStatusChangeLogModel();
         $status->queue_id    = $queue->queue_id;
         $status->from_status = QueueModel::STATUS_WAIT;
-        $status->to_status   = QueueModel::STATUS_RUN;
+        $status->to_status   = QueueModel::STATUS_WAIT;
         $status->save();
     }
 
     public function updated(QueueLogModel $queue)
     {
         $status              = new QueueStatusChangeLogModel();
-        $status->queue_id    = $queue->getAttributeValue('queue_id');
+        $status->queue_id    = $queue->queue_id;
         $status->from_status = $queue->getOriginal('status');
         $status->to_status   = $queue->getAttributeValue('status');
         $status->save();
