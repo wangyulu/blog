@@ -3718,18 +3718,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/wangyulu/base-queue.git",
-            "reference": "fdf86c1bded6f35a7424bf45edfee6ee1d4c7daf"
+            "reference": "f4ff1ff4d95a678acdcf68c8487ecb55897e0761"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/fdf86c1bded6f35a7424bf45edfee6ee1d4c7daf",
-            "reference": "fdf86c1bded6f35a7424bf45edfee6ee1d4c7daf",
+            "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/f4ff1ff4d95a678acdcf68c8487ecb55897e0761",
+            "reference": "f4ff1ff4d95a678acdcf68c8487ecb55897e0761",
             "shasum": ""
         },
         "require": {
-            "php": ">=7.1.14"
+            "php": ">=7.1.14",
+            "yadakhov/insert-on-duplicate-key": "^1.2"
         },
-        "time": "2019-07-16T10:48:04+00:00",
+        "time": "2019-08-07T05:41:59+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -4697,6 +4698,59 @@
             "assert",
             "check",
             "validate"
+        ]
+    },
+    {
+        "name": "yadakhov/insert-on-duplicate-key",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yadakhov/insert-on-duplicate-key.git",
+            "reference": "13962f769aed9887138bc7e78fd4aac97a7ebf9c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yadakhov/insert-on-duplicate-key/zipball/13962f769aed9887138bc7e78fd4aac97a7ebf9c",
+            "reference": "13962f769aed9887138bc7e78fd4aac97a7ebf9c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require-dev": {
+            "illuminate/database": "^5.1",
+            "phpunit/dbunit": "^2.0",
+            "phpunit/phpunit": "~5.0"
+        },
+        "time": "2017-04-27T16:19:41+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Yadakhov\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Yada Khov",
+                "email": "yada.khov@gmail.com",
+                "homepage": "https://github.com/yadakhov"
+            }
+        ],
+        "description": "A trait for MySQL INSERT ON DUPLICATE KEY UPDATE.",
+        "homepage": "https://github.com/yadakhov/insert-on-duplicate-key",
+        "keywords": [
+            "database",
+            "eloquent",
+            "mysql"
         ]
     }
 ]

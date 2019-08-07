@@ -23,13 +23,8 @@ class QueueStartListener extends BaseListener
                 return;
             }
 
-            if (!$logQuery = $this->hasQueueLog($event, $queue)) {
-                Log::error('【base_queue_start_error】', [$queue->id, $event->getQueueUuid(), ' queue_log not fund']);
-                return;
-            }
-
-            $logQuery->status = QueueModel::STATUS_RUN;
-            $logQuery->save();
+            $this->insertQueueLogToRun($queue, $event->getQueueUuid());
+            $this->insertStatusChangeLogToRun($queue, $event->getQueueUuid());
 
             setQueueStartTime();
 

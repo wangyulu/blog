@@ -11,6 +11,7 @@ namespace Sky\BaseQueue\Listeners;
 use Sky\BaseQueue\Events\BaseEvent;
 use Sky\BaseQueue\Models\QueueModel;
 use Sky\BaseQueue\Models\QueueLogModel;
+use Sky\BaseQueue\Models\QueueStatusChangeLogModel;
 
 class BaseListener
 {
@@ -39,10 +40,43 @@ class BaseListener
 
     public function insertQueueLogToWait(QueueModel $queue, $queueUuid = '')
     {
-        $log             = new QueueLogModel();
-        $log->queue_id   = $queue->id;
-        $log->queue_uuid = $queueUuid;
-        $log->status     = QueueModel::STATUS_WAIT;
+        $data = [
+            'queue_id'   => $queue->id,
+            'queue_uuid' => $queueUuid,
+            'status'     => QueueModel::STATUS_WAIT
+        ];
+
+        QueueLogModel::insertOnDuplicateKey($data, ['queue_id']);
+    }
+
+    public function insertQueueLogToRun(QueueModel $queue, $queueUuid = '')
+    {
+        $data = [
+            'queue_id'   => $queue->id,
+            'queue_uuid' => $queueUuid,
+            'status'     => QueueModel::STATUS_RUN
+        ];
+
+        QueueLogModel::insertOnDuplicateKey($data, ['status']);
+    }
+
+    public function insertStatusChangeLogToWait(QueueModel $queue, $queueUuid = '')
+    {
+        $log              = new QueueStatusChangeLogModel();
+        $log->queue_id    = $queue->id;
+        $log->queue_uuid  = $queueUuid;
+        $log->from_status = QueueModel::STATUS_WAIT;
+        $log->to_status   = QueueModel::STATUS_WAIT;
+        $log->save();
+    }
+
+    public function insertStatusChangeLogToRun(QueueModel $queue, $queueUuid = '')
+    {
+        $log              = new QueueStatusChangeLogModel();
+        $log->queue_id    = $queue->id;
+        $log->queue_uuid  = $queueUuid;
+        $log->from_status = QueueModel::STATUS_WAIT;
+        $log->to_status   = QueueModel::STATUS_RUN;
         $log->save();
     }
 

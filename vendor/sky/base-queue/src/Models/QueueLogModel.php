@@ -8,10 +8,13 @@
 
 namespace Sky\BaseQueue\Models;
 
+use Yadakhov\InsertOnDuplicateKey;
 use Illuminate\Database\Eloquent\Model;
 
 class QueueLogModel extends Model
 {
+    use InsertOnDuplicateKey;
+
     protected $connection = 'common_db';
 
     protected $table = 'queue_log';

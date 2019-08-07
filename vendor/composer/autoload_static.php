@@ -21,6 +21,10 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'Y' => 
+        array (
+            'Yadakhov\\' => 9,
+        ),
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
@@ -111,6 +115,10 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'Yadakhov\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yadakhov/insert-on-duplicate-key/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -3115,6 +3123,7 @@ class ComposerStaticInitb150245e3c655b4020d6193f9866dfff
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
+        'Yadakhov\\InsertOnDuplicateKey' => __DIR__ . '/..' . '/yadakhov/insert-on-duplicate-key/src/InsertOnDuplicateKey.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

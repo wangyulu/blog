@@ -17,6 +17,7 @@
         ]
     },
     "require": {
-        "php": ">=7.1.14"
+        "php": ">=7.1.14",
+        "yadakhov/insert-on-duplicate-key": "^1.2"
     }
 }

@@ -33,6 +33,8 @@ class QueueCreateListener extends BaseListener
 
             $this->insertQueueLogToWait($model, $event->getQueueUuid());
 
+            $this->insertStatusChangeLogToWait($model, $event->getQueueUuid());
+
             Log::info('【base_queue_create_job】', [$className, config('que.business_id'), config('que.environment')]);
 
         } catch (\Exception $e) {

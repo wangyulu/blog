@@ -1,0 +1,30 @@
+{
+    "name": "yadakhov/insert-on-duplicate-key",
+    "type": "library",
+    "description": "A trait for MySQL INSERT ON DUPLICATE KEY UPDATE.",
+    "keywords": [
+        "database",
+        "mysql",
+        "eloquent"
+    ],
+    "homepage": "https://github.com/yadakhov/insert-on-duplicate-key",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yada Khov",
+            "email": "yada.khov@gmail.com",
+            "homepage": "https://github.com/yadakhov"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~5.0",
+        "phpunit/dbunit": "^2.0",
+        "illuminate/database": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yadakhov\\": "src/"
+        }
+    }
+}

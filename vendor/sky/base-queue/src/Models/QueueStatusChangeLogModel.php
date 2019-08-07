@@ -18,6 +18,7 @@ class QueueStatusChangeLogModel extends Model
 
     protected $fillable = [
         'queue_id',
+        'queue_uuid',
         'from_status',
         'to_status',
     ];
