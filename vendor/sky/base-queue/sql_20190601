@@ -35,6 +35,7 @@ drop table if exists `test`.`queue_status_change_log`;
 create table if not exists `test`.`queue_status_change_log` (
     `id` int(10) unsigned auto_increment comment '主键ID',
     `queue_id` int(10) not null default '0' comment '队列ID，queue表主键ID',
+    `queue_uuid` varchar(32) NOT NULL DEFAULT '' COMMENT '队列生成时的唯一标识ID',
     `from_status` tinyint(3) not null default '0' comment 'from队列执行状态 0.待处理 1.处理中 2.成功 3.失败',
     `to_status` tinyint(3) not null default '0' comment 'to队列执行状态 0.待处理 1.处理中 2.成功 3.失败',
     `created_at` timestamp not null default current_timestamp comment '创建时间',

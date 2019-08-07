@@ -27,6 +27,7 @@ class QueueObserver
     {
         $status              = new QueueStatusChangeLogModel();
         $status->queue_id    = $queue->queue_id;
+        $status->queue_uuid  = $queue->queue_uuid;
         $status->from_status = $queue->getOriginal('status');
         $status->to_status   = $queue->getAttributeValue('status');
         $status->save();

@@ -3718,19 +3718,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/wangyulu/base-queue.git",
-            "reference": "f4ff1ff4d95a678acdcf68c8487ecb55897e0761"
+            "reference": "3ea5f824f2b62a8634082feb1667e05f7d3d469d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/f4ff1ff4d95a678acdcf68c8487ecb55897e0761",
-            "reference": "f4ff1ff4d95a678acdcf68c8487ecb55897e0761",
+            "url": "https://api.github.com/repos/wangyulu/base-queue/zipball/3ea5f824f2b62a8634082feb1667e05f7d3d469d",
+            "reference": "3ea5f824f2b62a8634082feb1667e05f7d3d469d",
             "shasum": ""
         },
         "require": {
             "php": ">=7.1.14",
             "yadakhov/insert-on-duplicate-key": "^1.2"
         },
-        "time": "2019-08-07T05:41:59+00:00",
+        "time": "2019-08-07T06:11:23+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
