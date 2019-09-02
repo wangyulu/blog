@@ -13,7 +13,9 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~7.0",
-        "mockery/mockery": "~1.0"
+        "mockery/mockery": "~1.0",
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "doctrine/dbal": "^2.9"
     },
     "autoload": {
         "psr-4": {
@@ -29,6 +31,11 @@
     "scripts": {
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta"
         ]
     },
     "minimum-stability": "dev",
