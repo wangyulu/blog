@@ -14,3 +14,13 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('users/save', ['uses' => 'UserController@save']);
+
+$router->get('users/{id}', ['uses' => 'UserController@detail']);
+
+$router->get('author/{id}', ['uses' => 'AuthorController@detail']);
+
+$router->get('book/list', ['uses' => 'BookController@list']);
+
+$router->get('book/{id}', ['uses' => 'BookController@detail']);
