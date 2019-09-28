@@ -16,6 +16,8 @@ class QueueExcepListener extends BaseListener
 {
     public function handle(QueueExcepEvent $event)
     {
+        $event->clearTraceId();
+        
         try {
             $queue = $this->getQueueByClassName($event->getClassName());
             if (!$queue) {

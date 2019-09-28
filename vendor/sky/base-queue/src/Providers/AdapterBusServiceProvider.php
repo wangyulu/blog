@@ -22,6 +22,7 @@ use Sky\BaseQueue\Events\QueueExcepEvent;
 use Sky\BaseQueue\Observer\QueueObserver;
 use Illuminate\Contracts\Events\Dispatcher;
 use Sky\BaseQueue\Librarys\AdapterDispatcher;
+use Sky\BaseQueue\Librarys\Connectors\RedisMixConnector;
 use Illuminate\Contracts\Bus\Dispatcher as DispatcherContract;
 use Illuminate\Contracts\Queue\Factory as QueueFactoryContract;
 use Illuminate\Contracts\Bus\QueueingDispatcher as QueueingDispatcherContract;
@@ -50,6 +51,7 @@ class AdapterBusServiceProvider extends BusServiceProvider
         $this->registerListener();
         $this->registerRoutes();
         $this->registerObserver();
+        $this->registerRedisMixConnector();
     }
 
     public function overload()
@@ -158,5 +160,19 @@ class AdapterBusServiceProvider extends BusServiceProvider
     protected function registerObserver()
     {
         QueueLogModel::observe(QueueObserver::class);
+    }
+
+    /**
+     * Register the Redis queue connector.
+     *
+     * @param  \Illuminate\Queue\QueueManager $manager
+     *
+     * @return void
+     */
+    protected function registerRedisMixConnector()
+    {
+        $this->app['queue']->addConnector('redis_mix', function () {
+            return new RedisMixConnector($this->app['redis']);
+        });
     }
 }

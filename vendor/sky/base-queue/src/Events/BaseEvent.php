@@ -42,4 +42,20 @@ class BaseEvent
     {
         return $this->queueUuid ?: array_get($this->body, 'id', '');
     }
+
+    public function getTraceId()
+    {
+        return array_get($this->body, 'HTTP_X_TRACE_ID', '');
+    }
+
+    public function setTraceId()
+    {
+        $this->getTraceId() && $_SERVER['HTTP_X_TRACE_ID'] = $this->getTraceId();
+    }
+
+    public function clearTraceId()
+    {
+        unset($_SERVER['HTTP_X_TRACE_ID']);
+    }
+
 }

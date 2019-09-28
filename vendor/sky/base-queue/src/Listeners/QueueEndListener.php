@@ -16,6 +16,8 @@ class QueueEndListener extends BaseListener
 {
     public function handle(QueueEndEvent $event)
     {
+        $event->clearTraceId();
+
         try {
             $queue = $this->getQueueByClassName($event->getClassName());
             if (!$queue) {

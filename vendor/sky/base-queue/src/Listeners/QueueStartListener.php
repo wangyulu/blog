@@ -16,6 +16,8 @@ class QueueStartListener extends BaseListener
 {
     public function handle(QueueStartEvent $event)
     {
+        $event->setTraceId();
+
         try {
             $queue = $this->getQueueByClassName($event->getClassName());
             if (!$queue) {

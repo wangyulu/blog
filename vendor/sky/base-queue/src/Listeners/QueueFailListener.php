@@ -16,6 +16,8 @@ class QueueFailListener extends BaseListener
 {
     public function handle(QueueFailEvent $event)
     {
+        $event->clearTraceId();
+        
         try {
             $queue = $this->getQueueByClassName($event->getClassName());
             if (!$queue) {
