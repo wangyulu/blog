@@ -4,10 +4,24 @@ namespace App\Providers;
 
 use DB;
 use Log;
+use App\User;
+use App\Posts;
+use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function boot()
+    {
+        Relation::morphMap(
+            [
+                'posts' => Posts::class,
+                'users' => User::class
+            ]
+        );
+    }
+
     /**
      * Register any application services.
      *
@@ -21,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
-        DB::listen(function (...$datas) {
-            Log::info('_______sql______', [$datas]);
+        DB::listen(function ($event) {
+            Log::info('_______sql______', [Str::replaceArray('?', $event->bindings, $event->sql)]);
         });
     }
 }

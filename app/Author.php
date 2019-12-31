@@ -16,4 +16,9 @@ class Author extends BaseModel
     {
         return $this->hasMany(Book::class);
     }
+
+    public function book()
+    {
+        return $this->hasOne(Book::class, 'author_id', 'id')->withDefault(['id' => 0, 'name' => '', 'price' => 0]);
+    }
 }

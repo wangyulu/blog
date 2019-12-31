@@ -35,8 +35,44 @@ class UserController extends Controller
         );
 
         $user = User::findOrNew(array_get($params, 'id', 0));
+
         $user->fill($params)->save();
 
         dd($user);
+    }
+
+    public function roleDetail(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        dd($user->roles->toArray());
+
+        foreach ($user->roles as $role) {
+            print_r($role->pivot);
+            exit;
+        }
+    }
+
+    public function detailPosts(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        dd($user->posts->toArray());
+    }
+
+    public function detailHasPosts(Request $request, $id)
+    {
+//        $user = User::find($id);
+
+        $s = User::has('posts')->get();
+
+        dd($s->toArray());
+    }
+
+    public function detailWithPhone(Request $request, $id)
+    {
+        $s = User::find($id);
+
+        dd($s->phone->toArray());
     }
 }

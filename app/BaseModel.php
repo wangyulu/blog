@@ -8,7 +8,6 @@
 
 namespace App;
 
-use Request;
 use App\Support\Traits\RelationTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,6 +24,6 @@ class BaseModel extends Model
      */
     public function getPerPage()
     {
-        return Request::get('page_size') ?: $this->perPage;
+        return app('request')->get('page_size') ?: $this->perPage;
     }
 }

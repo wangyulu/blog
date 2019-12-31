@@ -11,4 +11,12 @@ namespace App;
 class BookCategory extends BaseModel
 {
     protected $table = 'book_category';
+
+    public function authors()
+    {
+        return $this->hasManyThrough(
+            Author::class,
+            Book::class,
+            'category', 'id', 'id', 'author_id');
+    }
 }

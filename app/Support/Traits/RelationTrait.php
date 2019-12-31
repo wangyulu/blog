@@ -8,6 +8,7 @@
 
 namespace App\Support\Traits;
 
+use Log;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait RelationTrait
@@ -28,7 +29,7 @@ trait RelationTrait
             static::$constraints = false;
             $this->query->where($this->foreignKey, '=', $this->getParentKey());
 
-            \Log::info('_____macro', [$this->query, $this->parent, $this->related]);
+            Log::info('_____macro', [$this->query, $this->parent, $this->related]);
 
             static::$constraints = true;
             return $this;

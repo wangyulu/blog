@@ -8,16 +8,36 @@
 
 namespace App;
 
-use Request;
+use App\Events\Model\BookCreateEvent;
 use Illuminate\Database\Eloquent\Builder;
 
 class Book extends BaseModel
 {
     protected $table = 'book';
 
+    protected $fillable = [
+        'name',
+        'price',
+        'author_id',
+        'category',
+        'json_category',
+        'json_category->1',
+        'json_author'
+    ];
+
+    protected $casts = [
+        'created_at'    => 'timestamp',
+        'json_category' => 'json',
+        'json_author'   => 'json',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => BookCreateEvent::class
+    ];
+
     public function scopeName(Builder $builder)
     {
-        return $builder->when(Request::get('name'),
+        return $builder->when(app('request')->get('name'),
             function (Builder $builder, $name) {
                 $builder->where('name', 'like', "%{$name}%");
             }
@@ -26,6 +46,6 @@ class Book extends BaseModel
 
     public function author()
     {
-        return $this->belongsTo(Author::class, 'author_id', 'id');
+        return $this->belongsTo(Author::class);
     }
 }

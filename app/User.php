@@ -2,18 +2,20 @@
 
 namespace App;
 
+use Log;
 use Faker\Generator;
 use App\Models\Scopes\EmailScope;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable;
+    use Authenticatable, Authorizable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -42,7 +44,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function scopeName(Builder $builder, ...$params)
     {
-        \Log::info(__CLASS__, [$builder, $params]);
+        Log::info(__CLASS__, [$builder, $params]);
     }
 
     public function getNameAttribute($value)
@@ -62,6 +64,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function roles()
     {
-        $this->hasMany();
+        return $this->belongsToMany(Role::class, 'user_role', 'u_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Posts::class, 'user_id', 'id');
+    }
+
+    public function phone()
+    {
+        return $this->hasOne(Phone::class, 'user_id', 'id');
     }
 }

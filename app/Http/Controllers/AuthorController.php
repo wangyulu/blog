@@ -17,6 +17,13 @@ class AuthorController extends Controller
     {
         $detail = Author::find($id);
 
-        dd($detail->books()->withoutConst()->getResults()->toArray());
+        dd($detail->book->toArray());
+    }
+
+    public function detailWithBooks(Request $request, $id)
+    {
+        $detail = Author::find($id);
+
+        dd($detail->books()->getResults()->toArray());
     }
 }
