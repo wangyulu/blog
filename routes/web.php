@@ -14,3 +14,9 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/orders', ['uses' => 'OrderController@lists']);
+$router->post('/order', ['uses' => 'OrderController@create']);
+$router->post('/order/pay', ['uses' => 'OrderController@pay']);
+$router->post('/order/send', ['uses' => 'OrderController@send']);
+$router->post('/order/cancel', ['uses' => 'OrderController@cancel']);
